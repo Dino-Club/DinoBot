@@ -138,6 +138,7 @@ public class EventLoggingService
                 foreach (IEmbed embed in ReceivedMessage.Embeds)
                 {
                     EmbedBuilder cxEmbed = new EmbedBuilder();
+                    cxEmbed.WithColor(embed.Color!.Value);
                     cxEmbed.Title = $"{embed.Title}";
                     cxEmbed.WithAuthor(embed.Author!.Value.Name, embed.Author!.Value.IconUrl);
                     cxEmbed.WithDescription(embed.Description);
