@@ -34,7 +34,7 @@ namespace SammBot.Bot.Modules;
 [PrettyName("Bot Administration")]
 [Group("badmin", "Bot management commands. Bot owner only.")]
 [ModuleEmoji("\U0001f4be")]
-[RequireOwner]
+[RequireTeam]
 public class BotAdminModule : InteractionModuleBase<ShardedInteractionContext>
 {
     [UsedImplicitly] public Logger Logger { get; init; } = default!;
