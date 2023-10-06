@@ -50,7 +50,7 @@ public class BotAdminModule : InteractionModuleBase<ShardedInteractionContext>
         int i = 1;
         foreach (SocketGuild targetGuild in Context.Client.Guilds)
         {
-            codeBlock += $"{i}. {targetGuild.Name} (ID {targetGuild.Id})\n";
+            codeBlock += $"{i}. {targetGuild.Name} (ID {targetGuild.Id}) [Owner {targetGuild.Owner}]\n";
             i++;
         }
 
@@ -92,11 +92,19 @@ public class BotAdminModule : InteractionModuleBase<ShardedInteractionContext>
     [SlashCommand("leaveserver", "Leaves the specified server.")]
     [DetailedDescription("Forces the bot to leave the specified guild.")]
     [RateLimit(3, 1)]
-    public async Task<RuntimeResult> LeaveAsync([Summary(description: "The ID of the guild you want the bot to leave.")] ulong ServerId)
+    public async Task<RuntimeResult> LeaveAsync([Summary(description: "The ID of the guild you want the bot to leave.")] string serverId)
     {
-        SocketGuild targetGuild = Context.Client.GetGuild(ServerId);
+        if (!ulong.TryParse(serverId, out ulong guildId))
+        {
+            // Handle the case where the provided string is not a valid ulong.
+            return ExecutionResult.FromError("Invalid server ID. Please provide a valid numeric ID.");
+        }
+
+        SocketGuild targetGuild = Context.Client.GetGuild(guildId);
         if (targetGuild == null)
+        {
             return ExecutionResult.FromError("I am not currently in this guild!");
+        }
 
         string targetGuildName = targetGuild.Name;
         await targetGuild.LeaveAsync();

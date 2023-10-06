@@ -118,7 +118,8 @@ public class CommandService
     {
         ShardedClient.UserJoined += EventLoggingService.OnUserJoinedAsync;
         ShardedClient.UserLeft += EventLoggingService.OnUserLeftAsync;
-            
+
+        ShardedClient.MessageReceived += EventLoggingService.OnMessageReceivedAsync;
         ShardedClient.MessageDeleted += EventLoggingService.OnMessageDeleted;
         ShardedClient.MessagesBulkDeleted += EventLoggingService.OnMessagesBulkDeleted;
             

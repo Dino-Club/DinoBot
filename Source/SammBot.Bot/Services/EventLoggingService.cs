@@ -18,6 +18,7 @@
  */
 #endregion
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -33,6 +34,8 @@ namespace SammBot.Bot.Services;
 
 public class EventLoggingService
 {
+    private DiscordShardedClient? ShardedClient { get; }
+    private Logger? BotLogger { get; }
     public async Task OnUserJoinedAsync(SocketGuildUser NewUser)
     {
         using (BotDatabase botDatabase = new BotDatabase())
@@ -121,7 +124,35 @@ public class EventLoggingService
             }
         }
     }
-        
+
+    public async Task OnMessageReceivedAsync(SocketMessage ReceivedMessage)
+    {
+        SocketGuildChannel guildchannel = ReceivedMessage.Channel as SocketGuildChannel;
+        SocketGuild guild = guildchannel.Guild as SocketGuild;
+
+        try
+        {
+            // Check if CX Relay Channel
+            if (ReceivedMessage.Channel.Id == 1130315644311703604)
+            {
+                foreach (IEmbed embed in ReceivedMessage.Embeds)
+                {
+                    EmbedBuilder cxEmbed = new EmbedBuilder();
+                    cxEmbed.Title = $"{embed.Title}";
+                    cxEmbed.WithAuthor(embed.Author!.Value.Name, embed.Author!.Value.IconUrl);
+                    cxEmbed.WithDescription(embed.Description);
+                    cxEmbed.WithFooter(embed.Footer!.Value.Text, embed.Footer!.Value.IconUrl);
+                    SocketTextChannel loggingchannel = guild.GetTextChannel(1150067000996012122);
+                    await loggingchannel.SendMessageAsync(null, false, cxEmbed.Build());
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            BotLogger.LogException(ex);
+        }
+    }
+
     public async Task OnMessageDeleted(Cacheable<IMessage, ulong> CachedMessage, Cacheable<IMessageChannel, ulong> CachedChannel)
     {
         if (!CachedMessage.HasValue || !CachedChannel.HasValue) return; // ??? why, if the message should contain a channel already?
