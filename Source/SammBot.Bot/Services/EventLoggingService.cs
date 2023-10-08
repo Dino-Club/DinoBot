@@ -127,8 +127,8 @@ public class EventLoggingService
 
     public async Task OnMessageReceivedAsync(SocketMessage ReceivedMessage)
     {
-        SocketGuildChannel guildchannel = ReceivedMessage.Channel as SocketGuildChannel;
-        SocketGuild guild = guildchannel.Guild as SocketGuild;
+        SocketGuildChannel? guildchannel = ReceivedMessage.Channel as SocketGuildChannel;
+        SocketGuild guild = guildchannel!.Guild;
 
         try
         {
@@ -139,12 +139,22 @@ public class EventLoggingService
                 {
                     EmbedBuilder cxEmbed = new EmbedBuilder();
                     cxEmbed.WithColor(embed.Color!.Value);
-                    cxEmbed.Title = $"{embed.Title}";
+                    cxEmbed.WithTitle(embed.Title);
                     cxEmbed.WithAuthor(embed.Author!.Value.Name, embed.Author!.Value.IconUrl);
                     cxEmbed.WithDescription(embed.Description);
                     cxEmbed.WithFooter(embed.Footer!.Value.Text, embed.Footer!.Value.IconUrl);
+                    cxEmbed.WithCurrentTimestamp();
+                    
                     SocketTextChannel loggingchannel = guild.GetTextChannel(1150067000996012122);
-                    await loggingchannel.SendMessageAsync(null, false, cxEmbed.Build());
+                    if (embed.Author.Value.Name.Contains("🛡️ [MOD]"))
+                    {
+                        await loggingchannel.SendMessageAsync($"ConnectX Moderator {embed.Author!.Value.Name}", false, null);
+                    }
+                    if (embed.Author.Value.Name.Contains("⚙️ [DEV]"))
+                    {
+                        await loggingchannel.SendMessageAsync($"ConnectX Developer {embed.Author!.Value.Name}", false, null);
+                    }
+                    await loggingchannel.SendMessageAsync($"ConnectX Member {embed.Author!.Value.Name}", false, cxEmbed.Build());
                 }
             }
         }
