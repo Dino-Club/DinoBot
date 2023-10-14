@@ -23,7 +23,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Discord;
+using Discord.Interactions;
 using Discord.WebSocket;
+using Microsoft.Extensions.DependencyInjection;
 using SammBot.Bot.Core;
 using SammBot.Bot.Database;
 using SammBot.Library;
@@ -34,8 +36,22 @@ namespace SammBot.Bot.Services;
 
 public class EventLoggingService
 {
-    private DiscordShardedClient? ShardedClient { get; }
-    private Logger? BotLogger { get; }
+    private object modbadge;
+    private object devbadge;
+    private bool ismod;
+    private bool isdev;
+
+    private IServiceProvider ServiceProvider { get; }
+    private DiscordShardedClient ShardedClient { get; }
+    private Logger BotLogger { get; }
+
+    public EventLoggingService(IServiceProvider Services)
+    {
+        ServiceProvider = Services;
+        ShardedClient = ServiceProvider.GetRequiredService<DiscordShardedClient>();
+        BotLogger = ServiceProvider.GetRequiredService<Logger>();
+    }
+
     public async Task OnUserJoinedAsync(SocketGuildUser NewUser)
     {
         using (BotDatabase botDatabase = new BotDatabase())
@@ -127,34 +143,65 @@ public class EventLoggingService
 
     public async Task OnMessageReceivedAsync(SocketMessage ReceivedMessage)
     {
-        SocketGuildChannel? guildchannel = ReceivedMessage.Channel as SocketGuildChannel;
-        SocketGuild guild = guildchannel!.Guild;
 
         try
         {
-            // Check if CX Relay Channel
-            if (ReceivedMessage.Channel.Id == 1130315644311703604)
+            // Check if the message is from a bot to avoid an infinite loop.
+            if (ReceivedMessage.Author.IsBot)
+                return;
+
+            // Define an array of channel IDs that you want to relay messages to.
+            ulong[] relayChannelIds = { 1147530468208693258, 1147574268725563433 };
+
+            // Define an array of moderator user IDs
+            ulong[] moderatorUserIds = { 596773775404564481 };
+
+            // Define an array of developer user IDs
+            ulong[] devUserIds = { 596773775404564481 };
+
+
+            await ReceivedMessage.DeleteAsync();
+
+            foreach (var guild in ShardedClient!.Guilds)
             {
-                foreach (IEmbed embed in ReceivedMessage.Embeds)
+                var relayChannels = guild.TextChannels
+                    .Where(channel => relayChannelIds.Contains(channel.Id))
+                    .ToList();
+
+                foreach (var relayChannel in relayChannels)
                 {
-                    EmbedBuilder cxEmbed = new EmbedBuilder();
-                    cxEmbed.WithColor(embed.Color!.Value);
-                    cxEmbed.WithTitle(embed.Title);
-                    cxEmbed.WithAuthor(embed.Author!.Value.Name, embed.Author!.Value.IconUrl);
-                    cxEmbed.WithDescription(embed.Description);
-                    cxEmbed.WithFooter(embed.Footer!.Value.Text, embed.Footer!.Value.IconUrl);
-                    cxEmbed.WithCurrentTimestamp();
+                    EmbedBuilder relayEmbed = new EmbedBuilder();
+                    SocketGuildChannel? ReceivedChannel = ReceivedMessage.Channel as SocketGuildChannel;
+                    SocketGuild ReceivedGuild = ReceivedChannel!.Guild;
+
+                    // Check if the message author is a moderator or developer
+                    string authorName = ReceivedMessage.Author.GlobalName;
+                    ulong authorId = ReceivedMessage.Author.Id;
+
+                    if (moderatorUserIds.Contains(ReceivedMessage.Author.Id) && devUserIds.Contains(ReceivedMessage.Author.Id))
+                    {
+                        authorName = authorName + "🛡️ [MOD] ⚙️ [DEV]";
+                    }
+                    else if (moderatorUserIds.Contains(ReceivedMessage.Author.Id))
+                    {
+                        authorName = authorName + " 🛡️ [MOD]";
+                    }
+                    else if (devUserIds.Contains(ReceivedMessage.Author.Id))
+                    {
+                        authorName = authorName + "⚙️ [DEV]";
+                    }
+                    else
+                    {
+                        authorName = authorName + "•" + "(" + authorId + ")";
+                    }
                     
-                    SocketTextChannel loggingchannel = guild.GetTextChannel(1150067000996012122);
-                    if (embed.Author.Value.Name.Contains("🛡️ [MOD]"))
-                    {
-                        await loggingchannel.SendMessageAsync($"ConnectX Moderator {embed.Author!.Value.Name}", false, null);
-                    }
-                    if (embed.Author.Value.Name.Contains("⚙️ [DEV]"))
-                    {
-                        await loggingchannel.SendMessageAsync($"ConnectX Developer {embed.Author!.Value.Name}", false, null);
-                    }
-                    await loggingchannel.SendMessageAsync($"ConnectX Member {embed.Author!.Value.Name}", false, cxEmbed.Build());
+                    relayEmbed.WithAuthor($"{authorName}", ReceivedMessage.Author.GetAvatarUrl());
+                    relayEmbed.WithTitle($"New Message from {ReceivedGuild.Name}");
+                    relayEmbed.WithDescription(ReceivedMessage.Content);
+                    relayEmbed.WithFooter(ReceivedGuild.Name, ReceivedGuild.IconUrl);
+                    relayEmbed.WithCurrentTimestamp();
+
+                    await relayChannel.SendMessageAsync(null, false, relayEmbed.Build());
                 }
             }
         }
@@ -162,6 +209,18 @@ public class EventLoggingService
         {
             BotLogger.LogException(ex);
         }
+    }
+
+    private bool IsRelayChannel(SocketTextChannel channel)
+    {
+        // Replace this with your own logic for determining which channels to relay messages from
+        return channel.Name.Contains("relay-channel");
+    }
+
+    private IEnumerable<SocketTextChannel> GetOtherChannels()
+    {
+        // Replace this with your own logic for getting the list of channels to relay messages to
+        return ShardedClient!.Guilds.SelectMany(guild => guild.TextChannels).Where(channel => !IsRelayChannel(channel));
     }
 
     public async Task OnMessageDeleted(Cacheable<IMessage, ulong> CachedMessage, Cacheable<IMessageChannel, ulong> CachedChannel)
