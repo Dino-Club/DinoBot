@@ -143,7 +143,6 @@ public class EventLoggingService
 
     public async Task OnMessageReceivedAsync(SocketMessage ReceivedMessage)
     {
-
         try
         {
             // Check if the message is from a bot to avoid an infinite loop.
@@ -209,18 +208,6 @@ public class EventLoggingService
         {
             BotLogger.LogException(ex);
         }
-    }
-
-    private bool IsRelayChannel(SocketTextChannel channel)
-    {
-        // Replace this with your own logic for determining which channels to relay messages from
-        return channel.Name.Contains("relay-channel");
-    }
-
-    private IEnumerable<SocketTextChannel> GetOtherChannels()
-    {
-        // Replace this with your own logic for getting the list of channels to relay messages to
-        return ShardedClient!.Guilds.SelectMany(guild => guild.TextChannels).Where(channel => !IsRelayChannel(channel));
     }
 
     public async Task OnMessageDeleted(Cacheable<IMessage, ulong> CachedMessage, Cacheable<IMessageChannel, ulong> CachedChannel)
