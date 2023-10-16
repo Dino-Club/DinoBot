@@ -18,7 +18,7 @@
  */
 #endregion
 
-namespace SammBot.Library.Attributes;
+namespace DinoBot.Library.Attributes;
 
 /// <summary>
 /// An attribute used to denote a module's emoji to be used on

@@ -20,7 +20,7 @@
 
 using SkiaSharp;
 
-namespace SammBot.Library.Extensions;
+namespace DinoBot.Library.Extensions;
 
 public static class ColorExtensions
 {

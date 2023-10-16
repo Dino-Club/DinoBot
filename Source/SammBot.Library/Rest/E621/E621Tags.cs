@@ -18,7 +18,7 @@
 
 using System.Text.Json.Serialization;
 
-namespace SammBot.Library.Rest.E621;
+namespace DinoBot.Library.Rest.E621;
 
 /// <summary>
 /// A class that contains a post's tags on e621.

@@ -21,7 +21,7 @@
 using Discord;
 using Discord.Interactions;
 
-namespace SammBot.Library.Extensions;
+namespace DinoBot.Library.Extensions;
 
 /// <summary>
 /// Extension methods for working with rich embeds.

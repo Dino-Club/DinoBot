@@ -28,15 +28,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Discord.Interactions;
 using JetBrains.Annotations;
-using SammBot.Bot.Core;
-using SammBot.Bot.Services;
-using SammBot.Library;
-using SammBot.Library.Attributes;
-using SammBot.Library.Extensions;
-using SammBot.Library.Preconditions;
-using SammBot.Library.Rest.UrbanDictionary;
+using DinoBot.Core;
+using DinoBot.Services;
+using DinoBot.Library;
+using DinoBot.Library.Attributes;
+using DinoBot.Library.Extensions;
+using DinoBot.Library.Preconditions;
+using DinoBot.Library.Rest.UrbanDictionary;
 
-namespace SammBot.Bot.Modules;
+namespace DinoBot.Modules;
 
 [PrettyName("Fun")]
 [Group("fun", "Games and fun!")]

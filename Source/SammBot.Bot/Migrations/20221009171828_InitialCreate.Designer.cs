@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SammBot.Bot.Database;
+using DinoBot.Database;
 
 #nullable disable
 
-namespace SammBot.Bot.Migrations
+namespace DinoBot.Migrations
 {
     [DbContext(typeof(BotDatabase))]
     [Migration("20221009171828_InitialCreate")]
@@ -18,7 +18,7 @@ namespace SammBot.Bot.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.9");
 
-            modelBuilder.Entity("SammBotNET.Database.GuildConfig", b =>
+            modelBuilder.Entity("DinoBotNET.Database.GuildConfig", b =>
                 {
                     b.Property<ulong>("GuildId")
                         .ValueGeneratedOnAdd()
@@ -35,7 +35,7 @@ namespace SammBot.Bot.Migrations
                     b.ToTable("GuildConfigs");
                 });
 
-            modelBuilder.Entity("SammBotNET.Database.Pronoun", b =>
+            modelBuilder.Entity("DinoBotNET.Database.Pronoun", b =>
                 {
                     b.Property<ulong>("UserId")
                         .ValueGeneratedOnAdd()
@@ -64,7 +64,7 @@ namespace SammBot.Bot.Migrations
                     b.ToTable("Pronouns");
                 });
 
-            modelBuilder.Entity("SammBotNET.Database.UserTag", b =>
+            modelBuilder.Entity("DinoBotNET.Database.UserTag", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("TEXT");
@@ -89,7 +89,7 @@ namespace SammBot.Bot.Migrations
                     b.ToTable("UserTags");
                 });
 
-            modelBuilder.Entity("SammBotNET.Database.UserWarning", b =>
+            modelBuilder.Entity("DinoBotNET.Database.UserWarning", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("TEXT");

@@ -18,7 +18,7 @@
 
 using Discord;
 
-namespace SammBot.Library;
+namespace DinoBot.Library;
 
 /// <summary>
 /// Class that contains some constants.

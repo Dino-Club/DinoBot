@@ -17,10 +17,10 @@
 #endregion
 
 using JetBrains.Annotations;
-using SammBot.Library.Attributes;
-using SammBot.Library.Extensions;
+using DinoBot.Library.Attributes;
+using DinoBot.Library.Extensions;
 
-namespace SammBot.Tests.Extensions;
+namespace DinoBot.Tests.Extensions;
 
 [TestClass]
 public class ObjectExtensionsTests

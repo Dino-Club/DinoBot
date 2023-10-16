@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace SammBot.Bot.Migrations
+namespace DinoBot.Migrations
 {
     /// <inheritdoc />
     public partial class AddGeneratedIds : Migration

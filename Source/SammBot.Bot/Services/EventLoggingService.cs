@@ -26,13 +26,13 @@ using Discord;
 using Discord.Interactions;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
-using SammBot.Bot.Core;
-using SammBot.Bot.Database;
-using SammBot.Library;
-using SammBot.Library.Database.Models;
-using SammBot.Library.Extensions;
+using DinoBot.Core;
+using DinoBot.Database;
+using DinoBot.Library;
+using DinoBot.Library.Database.Models;
+using DinoBot.Library.Extensions;
 
-namespace SammBot.Bot.Services;
+namespace DinoBot.Services;
 
 public class EventLoggingService
 {

@@ -18,7 +18,7 @@
 
 using System;
 
-namespace SammBot.Bot.Services;
+namespace DinoBot.Services;
 
 public class BooruService
 {

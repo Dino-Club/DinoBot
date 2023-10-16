@@ -21,7 +21,7 @@
 using Discord;
 using Discord.WebSocket;
 
-namespace SammBot.Library.Extensions;
+namespace DinoBot.Library.Extensions;
 
 public static class UserExtensions
 {

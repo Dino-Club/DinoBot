@@ -18,7 +18,7 @@
  */
 #endregion
 
-namespace SammBot.Library.Database.Models;
+namespace DinoBot.Library.Database.Models;
 
 public class UserTag : DatabaseEntity
 {

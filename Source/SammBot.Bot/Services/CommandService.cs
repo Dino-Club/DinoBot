@@ -22,13 +22,13 @@ using Discord;
 using Discord.Interactions;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
-using SammBot.Bot.Core;
-using SammBot.Library.Extensions;
+using DinoBot.Core;
+using DinoBot.Library.Extensions;
 using System;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace SammBot.Bot.Services;
+namespace DinoBot.Services;
 
 public class CommandService
 {

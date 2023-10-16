@@ -29,13 +29,13 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Discord.Interactions;
 using JetBrains.Annotations;
-using SammBot.Bot.Core;
-using SammBot.Library;
-using SammBot.Library.Attributes;
-using SammBot.Library.Extensions;
-using SammBot.Library.Preconditions;
+using DinoBot.Core;
+using DinoBot.Library;
+using DinoBot.Library.Attributes;
+using DinoBot.Library.Extensions;
+using DinoBot.Library.Preconditions;
 
-namespace SammBot.Bot.Modules;
+namespace DinoBot.Modules;
 
 [PrettyName("Information")]
 [Group("info", "Bot information and statistics.")]
@@ -63,8 +63,8 @@ public class InformationModule : InteractionModuleBase<ShardedInteractionContext
         string releaseConfig = "Release";
 #endif
             
-        string formattedWebsite = Format.Url("website", "https://analogfeelings.github.io/SammBot/");
-        string formattedGithub = Format.Url("repository", "https://github.com/AnalogFeelings/SammBot");
+        string formattedWebsite = Format.Url("website", "https://analogfeelings.github.io/DinoBot/");
+        string formattedGithub = Format.Url("repository", "https://github.com/AnalogFeelings/DinoBot");
 
         replyEmbed.Title = "\u2139\uFE0F Bot Information";
         replyEmbed.WithColor(59, 136, 195);

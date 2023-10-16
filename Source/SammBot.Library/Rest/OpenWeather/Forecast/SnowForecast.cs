@@ -20,7 +20,7 @@
 
 using System.Text.Json.Serialization;
 
-namespace SammBot.Library.Rest.OpenWeather.Forecast;
+namespace DinoBot.Library.Rest.OpenWeather.Forecast;
 
 public class SnowForecast
 {

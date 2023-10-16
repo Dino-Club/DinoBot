@@ -16,9 +16,9 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #endregion
 
-using SammBot.Library.Components;
+using DinoBot.Library.Components;
 
-namespace SammBot.Tests.Components;
+namespace DinoBot.Tests.Components;
 
 [TestClass]
 public class TaskQueueTests

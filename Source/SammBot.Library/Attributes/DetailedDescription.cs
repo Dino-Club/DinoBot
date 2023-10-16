@@ -18,7 +18,7 @@
  */
 #endregion
 
-namespace SammBot.Library.Attributes;
+namespace DinoBot.Library.Attributes;
 
 /// <summary>
 /// An attribute that denotes the extended description of a method or property.

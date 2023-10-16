@@ -19,9 +19,9 @@
 #endregion
 
 using System.Collections.Generic;
-using SammBot.Library.Attributes;
+using DinoBot.Library.Attributes;
 
-namespace SammBot.Bot.Core;
+namespace DinoBot.Core;
 
 public class BotConfig
 {

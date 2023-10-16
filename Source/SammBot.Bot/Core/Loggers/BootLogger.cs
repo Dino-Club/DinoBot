@@ -22,7 +22,7 @@ using Pastel;
 using System;
 using System.Drawing;
 
-namespace SammBot.Bot.Core;
+namespace DinoBot.Core;
 
 /// <summary>
 /// Simple logger for the pre-StartupService state of the bot for when Matcha isn't available.

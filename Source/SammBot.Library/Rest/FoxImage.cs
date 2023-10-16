@@ -20,7 +20,7 @@
 
 using System.Text.Json.Serialization;
 
-namespace SammBot.Library.Rest;
+namespace DinoBot.Library.Rest;
 
 /// <summary>
 /// A class that contains a fox image from the Random Fox API.

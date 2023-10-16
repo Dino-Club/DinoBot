@@ -18,9 +18,9 @@
  */
 #endregion
 
-using SammBot.Library.Attributes;
+using DinoBot.Library.Attributes;
 
-namespace SammBot.Library.Rest.OpenWeather.Geolocation;
+namespace DinoBot.Library.Rest.OpenWeather.Geolocation;
 
 public class GeolocationParameters
 {

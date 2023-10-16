@@ -18,7 +18,7 @@
  */
 #endregion
 
-namespace SammBot.Library.Attributes;
+namespace DinoBot.Library.Attributes;
 
 /// <summary>
 /// An attribute used to denote a setting that requires a full bot reboot to

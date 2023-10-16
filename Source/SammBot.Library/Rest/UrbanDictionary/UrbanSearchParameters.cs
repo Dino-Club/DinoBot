@@ -18,9 +18,9 @@
  */
 #endregion
 
-using SammBot.Library.Attributes;
+using DinoBot.Library.Attributes;
 
-namespace SammBot.Library.Rest.UrbanDictionary;
+namespace DinoBot.Library.Rest.UrbanDictionary;
 
 /// <summary>
 /// A class used to pass search parameters to the Urban

@@ -16,7 +16,7 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #endregion
 
-namespace SammBot.Library.Services;
+namespace DinoBot.Library.Services;
 
 /// <summary>
 /// A service containing utility methods for HTTP requests.

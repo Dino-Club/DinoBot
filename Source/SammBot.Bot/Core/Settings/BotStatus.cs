@@ -18,7 +18,7 @@
  */
 #endregion
 
-namespace SammBot.Bot.Core;
+namespace DinoBot.Core;
 
 public class BotStatus
 {

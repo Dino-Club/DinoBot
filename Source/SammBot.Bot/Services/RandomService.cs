@@ -18,11 +18,11 @@
  */
 #endregion
 
-using SammBot.Bot.Core;
+using DinoBot.Core;
 using SharpCat.Requester.Cat;
 using SharpCat.Requester.Dog;
 
-namespace SammBot.Bot.Services;
+namespace DinoBot.Services;
 
 public class RandomService
 {

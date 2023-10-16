@@ -19,9 +19,9 @@
 #endregion
 
 using Microsoft.EntityFrameworkCore;
-using SammBot.Library.Attributes;
+using DinoBot.Library.Attributes;
 
-namespace SammBot.Library.Database.Models;
+namespace DinoBot.Library.Database.Models;
 
 public enum WarnLimitAction
 {

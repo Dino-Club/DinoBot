@@ -10,7 +10,7 @@ using System.Collections.Concurrent;
 using Discord;
 using Discord.Interactions;
 
-namespace SammBot.Library.Preconditions;
+namespace DinoBot.Library.Preconditions;
 
 /// <summary>
 /// A precondition that prevents people from running commands too often.

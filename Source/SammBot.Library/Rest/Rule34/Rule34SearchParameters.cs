@@ -16,9 +16,9 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #endregion
 
-using SammBot.Library.Attributes;
+using DinoBot.Library.Attributes;
 
-namespace SammBot.Library.Rest.Rule34;
+namespace DinoBot.Library.Rest.Rule34;
 
 /// <summary>
 /// A class used to pass search parameters to the Rule34

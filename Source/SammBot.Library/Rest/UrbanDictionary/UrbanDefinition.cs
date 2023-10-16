@@ -20,7 +20,7 @@
 
 using System.Text.Json.Serialization;
 
-namespace SammBot.Library.Rest.UrbanDictionary;
+namespace DinoBot.Library.Rest.UrbanDictionary;
 
 /// <summary>
 /// A class that contains a word definition from the Urban Dictionary API.

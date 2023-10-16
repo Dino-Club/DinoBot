@@ -16,7 +16,7 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #endregion
 
-namespace SammBot.Library.Components;
+namespace DinoBot.Library.Components;
 
 /// <summary>
 /// Implements a queue of <see cref="Task{TResult}"/> for concurrency purposes.

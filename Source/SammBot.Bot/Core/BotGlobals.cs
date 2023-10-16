@@ -26,7 +26,7 @@ using System.Runtime.InteropServices;
 using Discord;
 using System.Text.Json;
 
-namespace SammBot.Bot.Core;
+namespace DinoBot.Core;
 
 public class BotGlobals
 {

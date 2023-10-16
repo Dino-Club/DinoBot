@@ -18,7 +18,7 @@
  */
 #endregion
 
-namespace SammBot.Library.Extensions;
+namespace DinoBot.Library.Extensions;
 
 public static class StringExtensions
 {

@@ -17,7 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\SammBot.Library\SammBot.Library.csproj" />
+      <ProjectReference Include="..\DinoBot.Library\DinoBot.Library.csproj" />
     </ItemGroup>
 
 </Project>

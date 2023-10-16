@@ -29,7 +29,7 @@
 
 using System.Globalization;
 
-namespace SammBot.Library.Helpers;
+namespace DinoBot.Library.Helpers;
 
 /// <summary>
 /// Helper class to run async methods inside synchronous methods in a clean way.

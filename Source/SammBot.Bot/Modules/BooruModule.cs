@@ -25,16 +25,16 @@ using Discord.Interactions;
 using Fergun.Interactive;
 using Fergun.Interactive.Pagination;
 using JetBrains.Annotations;
-using SammBot.Bot.Core;
-using SammBot.Bot.Services;
-using SammBot.Library;
-using SammBot.Library.Attributes;
-using SammBot.Library.Extensions;
-using SammBot.Library.Preconditions;
-using SammBot.Library.Rest.E621;
-using SammBot.Library.Rest.Rule34;
+using DinoBot.Core;
+using DinoBot.Services;
+using DinoBot.Library;
+using DinoBot.Library.Attributes;
+using DinoBot.Library.Extensions;
+using DinoBot.Library.Preconditions;
+using DinoBot.Library.Rest.E621;
+using DinoBot.Library.Rest.Rule34;
 
-namespace SammBot.Bot.Modules;
+namespace DinoBot.Modules;
 
 [PrettyName("Booru")]
 [Group("booru", "Commands to retrieve images from Booru-style sites.")]

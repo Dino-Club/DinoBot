@@ -34,14 +34,14 @@ using Discord.Interactions;
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.DependencyInjection;
-using SammBot.Bot.Core;
-using SammBot.Bot.Database;
-using SammBot.Library;
-using SammBot.Library.Components;
-using SammBot.Library.Extensions;
+using DinoBot.Core;
+using DinoBot.Database;
+using DinoBot.Library;
+using DinoBot.Library.Components;
+using DinoBot.Library.Extensions;
 using Color = System.Drawing.Color;
 
-namespace SammBot.Bot.Services;
+namespace DinoBot.Services;
 
 public class StartupService
 {

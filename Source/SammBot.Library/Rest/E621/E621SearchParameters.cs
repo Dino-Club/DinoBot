@@ -16,9 +16,9 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #endregion
 
-using SammBot.Library.Attributes;
+using DinoBot.Library.Attributes;
 
-namespace SammBot.Library.Rest.E621;
+namespace DinoBot.Library.Rest.E621;
 
 /// <summary>
 /// A class used to pass search parameters to the e621

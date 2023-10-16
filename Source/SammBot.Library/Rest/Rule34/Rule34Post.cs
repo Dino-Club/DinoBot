@@ -18,7 +18,7 @@
 
 using System.Text.Json.Serialization;
 
-namespace SammBot.Library.Rest.Rule34;
+namespace DinoBot.Library.Rest.Rule34;
 
 /// <summary>
 /// A class that contains a post from the Rule34 API.

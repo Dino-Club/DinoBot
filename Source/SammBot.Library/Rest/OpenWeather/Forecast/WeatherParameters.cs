@@ -18,9 +18,9 @@
  */
 #endregion
 
-using SammBot.Library.Attributes;
+using DinoBot.Library.Attributes;
 
-namespace SammBot.Library.Rest.OpenWeather.Forecast;
+namespace DinoBot.Library.Rest.OpenWeather.Forecast;
 
 public class WeatherParameters
 {

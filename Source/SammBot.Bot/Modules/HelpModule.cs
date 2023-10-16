@@ -24,13 +24,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Discord.Interactions;
 using JetBrains.Annotations;
-using SammBot.Bot.Core;
-using SammBot.Library;
-using SammBot.Library.Attributes;
-using SammBot.Library.Extensions;
-using SammBot.Library.Preconditions;
+using DinoBot.Core;
+using DinoBot.Library;
+using DinoBot.Library.Attributes;
+using DinoBot.Library.Extensions;
+using DinoBot.Library.Preconditions;
 
-namespace SammBot.Bot.Modules;
+namespace DinoBot.Modules;
 
 [PrettyName("Help")]
 public class HelpModule : InteractionModuleBase<ShardedInteractionContext>

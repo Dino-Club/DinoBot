@@ -2,7 +2,7 @@
 using Discord.WebSocket;
 using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using Microsoft.Extensions.DependencyInjection;
-using SammBot.Bot.Core;
+using DinoBot.Core;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 
-namespace SammBot.Bot.Services;
+namespace DinoBot.Services;
 
 public class RelayService
 {

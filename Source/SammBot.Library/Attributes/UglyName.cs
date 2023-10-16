@@ -18,7 +18,7 @@
  */
 #endregion
 
-namespace SammBot.Library.Attributes;
+namespace DinoBot.Library.Attributes;
 
 /// <summary>
 /// An attribute used to denote an internal "ugly" name for a property.

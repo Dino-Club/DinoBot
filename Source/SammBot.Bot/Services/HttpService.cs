@@ -21,15 +21,15 @@ using System.Collections.Specialized;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
-using SammBot.Bot.Core;
-using SammBot.Library.Components;
-using SammBot.Library.Extensions;
-using SammBot.Library.Services;
+using DinoBot.Core;
+using DinoBot.Library.Components;
+using DinoBot.Library.Extensions;
+using DinoBot.Library.Services;
 using System.Text.Json;
 using System.Collections.Concurrent;
 using System.Threading;
 
-namespace SammBot.Bot.Services;
+namespace DinoBot.Services;
 
 /// <inheritdoc/>
 public class HttpService : IHttpService

@@ -20,12 +20,12 @@
 
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using SammBot.Bot.Core;
+using DinoBot.Core;
 using System.IO;
 using JetBrains.Annotations;
-using SammBot.Library.Database.Models;
+using DinoBot.Library.Database.Models;
 
-namespace SammBot.Bot.Database;
+namespace DinoBot.Database;
 
 public class BotDatabase : DbContext
 {

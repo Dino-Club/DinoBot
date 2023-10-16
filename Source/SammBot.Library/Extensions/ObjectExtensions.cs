@@ -20,9 +20,9 @@
 
 using System.Reflection;
 using System.Web;
-using SammBot.Library.Attributes;
+using DinoBot.Library.Attributes;
 
-namespace SammBot.Library.Extensions;
+namespace DinoBot.Library.Extensions;
 
 public static class ObjectExtensions
 {

@@ -27,15 +27,15 @@ using System.Threading.Tasks;
 using Discord;
 using Discord.Interactions;
 using Microsoft.EntityFrameworkCore;
-using SammBot.Bot.Core;
-using SammBot.Bot.Database;
-using SammBot.Library;
-using SammBot.Library.Attributes;
-using SammBot.Library.Database.Models;
-using SammBot.Library.Extensions;
-using SammBot.Library.Preconditions;
+using DinoBot.Core;
+using DinoBot.Database;
+using DinoBot.Library;
+using DinoBot.Library.Attributes;
+using DinoBot.Library.Database.Models;
+using DinoBot.Library.Extensions;
+using DinoBot.Library.Preconditions;
 
-namespace SammBot.Bot.Modules;
+namespace DinoBot.Modules;
 
 [PrettyName("Server Settings")]
 [Group("scfg", "Server settings such as logging, welcome messages, etc.")]

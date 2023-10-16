@@ -20,7 +20,7 @@
 
 using System.Text.Json.Serialization;
 
-namespace SammBot.Library.Rest;
+namespace DinoBot.Library.Rest;
 
 /// <summary>
 /// A class that contains a duck image from the random-d.uk API.

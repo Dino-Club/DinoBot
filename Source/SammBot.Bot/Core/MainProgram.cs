@@ -29,11 +29,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using Discord.Interactions;
 using Fergun.Interactive;
-using SammBot.Bot.Services;
-using SammBot.Library.Helpers;
+using DinoBot.Services;
+using DinoBot.Library.Helpers;
 using System.Text.Json;
 
-namespace SammBot.Bot.Core;
+namespace DinoBot.Core;
 
 /// <summary>
 /// A class containing all the startup logic

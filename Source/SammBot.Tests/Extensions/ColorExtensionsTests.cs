@@ -16,10 +16,10 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #endregion
 
-using SammBot.Library.Extensions;
+using DinoBot.Library.Extensions;
 using SkiaSharp;
 
-namespace SammBot.Tests.Extensions;
+namespace DinoBot.Tests.Extensions;
 
 [TestClass]
 public class ColorExtensionsTests

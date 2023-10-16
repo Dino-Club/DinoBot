@@ -26,7 +26,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Discord.Interactions;
 
-namespace SammBot.Bot.Core;
+namespace DinoBot.Core;
 
 public class Logger
 {
