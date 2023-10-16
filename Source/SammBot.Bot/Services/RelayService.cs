@@ -50,14 +50,14 @@ public class RelayService
                 foreach (var guild in ShardedClient!.Guilds)
                 {
                     var relayChannels = guild.TextChannels
-                                             .Where(channel => relayChannelIds.Contains(channel.Id))
+                                             .Where(Channel => relayChannelIds.Contains(Channel.Id))
                                              .ToList();
 
                     foreach (var relayChannel in relayChannels)
                     {
                         EmbedBuilder relayEmbed = new EmbedBuilder();
-                        SocketGuildChannel? ReceivedChannel = ReceivedMessage.Channel as SocketGuildChannel;
-                        SocketGuild ReceivedGuild = ReceivedChannel!.Guild;
+                        SocketGuildChannel? receivedChannel = ReceivedMessage.Channel as SocketGuildChannel;
+                        SocketGuild receivedGuild = receivedChannel!.Guild;
 
                         // Check if the message author is a moderator or developer
                         string authorName = ReceivedMessage.Author.GlobalName;
@@ -81,13 +81,13 @@ public class RelayService
                             authorName = authorName + " • " + "(" + authorId + ")";
                         }
 
-                        if (ReceivedGuild.Owner.Id == ReceivedMessage.Author.Id)
+                        if (receivedGuild.Owner.Id == ReceivedMessage.Author.Id)
                         {
-                            serverFooter = ReceivedGuild.Name + " (Owner)";
+                            serverFooter = receivedGuild.Name + " (Owner)";
                         }
                         else
                         {
-                            serverFooter = ReceivedGuild.Name;
+                            serverFooter = receivedGuild.Name;
                         }
 
                         relayEmbed.WithAuthor($"{authorName}", ReceivedMessage.Author.GetAvatarUrl());
