@@ -177,7 +177,7 @@ public class MainProgram
     private ServiceProvider ConfigureServiceProvider()
     {
         ServiceCollection serviceCollection = new ServiceCollection();
-        
+
         serviceCollection.AddSingleton(_ShardedClient)
                          .AddSingleton(_InteractionService)
                          .AddSingleton<HttpService>()
@@ -187,7 +187,8 @@ public class MainProgram
                          .AddSingleton<Logger>()
                          .AddSingleton<RandomService>()
                          .AddSingleton<BooruService>()
-                         .AddSingleton<EventLoggingService>();
+                         .AddSingleton<EventLoggingService>()
+                         .AddSingleton<RelayService>();
 
         return serviceCollection.BuildServiceProvider();
     }

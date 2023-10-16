@@ -38,6 +38,7 @@ public class CommandService
 
     private InteractionService InteractionService { get; }
     private EventLoggingService EventLoggingService { get; }
+    private RelayService RelayService { get; }
 
     public CommandService(IServiceProvider Services)
     {
@@ -47,6 +48,7 @@ public class CommandService
         ShardedClient = ServiceProvider.GetRequiredService<DiscordShardedClient>();
         BotLogger = ServiceProvider.GetRequiredService<Logger>();
         EventLoggingService = ServiceProvider.GetRequiredService<EventLoggingService>();
+        RelayService = ServiceProvider.GetRequiredService<RelayService>();
     }
 
     public async Task InitializeHandlerAsync()
@@ -119,7 +121,7 @@ public class CommandService
         ShardedClient.UserJoined += EventLoggingService.OnUserJoinedAsync;
         ShardedClient.UserLeft += EventLoggingService.OnUserLeftAsync;
 
-        ShardedClient.MessageReceived += EventLoggingService.OnMessageReceivedAsync;
+        ShardedClient.MessageReceived += RelayService.OnRelayMessageReceivedAsync;
         ShardedClient.MessageDeleted += EventLoggingService.OnMessageDeleted;
         ShardedClient.MessagesBulkDeleted += EventLoggingService.OnMessagesBulkDeleted;
             
