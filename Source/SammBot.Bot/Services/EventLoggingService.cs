@@ -36,11 +36,6 @@ namespace SammBot.Bot.Services;
 
 public class EventLoggingService
 {
-    private object modbadge;
-    private object devbadge;
-    private bool ismod;
-    private bool isdev;
-
     private IServiceProvider ServiceProvider { get; }
     private DiscordShardedClient ShardedClient { get; }
     private Logger BotLogger { get; }
@@ -147,17 +142,16 @@ public class EventLoggingService
         {
             // Check if the message is from a bot to avoid an infinite loop.
             if (ReceivedMessage.Author.IsBot)
-                return;
+               return;
 
             // Define an array of channel IDs that you want to relay messages to.
             ulong[] relayChannelIds = { 1147530468208693258, 1147574268725563433 };
 
             // Define an array of moderator user IDs
-            ulong[] moderatorUserIds = { 596773775404564481 };
+            ulong[] moderatorUserIds = { 596773775404564481, 503277868168642560 };
 
             // Define an array of developer user IDs
             ulong[] devUserIds = { 596773775404564481 };
-
 
             await ReceivedMessage.DeleteAsync();
 
@@ -176,6 +170,7 @@ public class EventLoggingService
                     // Check if the message author is a moderator or developer
                     string authorName = ReceivedMessage.Author.GlobalName;
                     ulong authorId = ReceivedMessage.Author.Id;
+                    string serverFooter;
 
                     if (moderatorUserIds.Contains(ReceivedMessage.Author.Id) && devUserIds.Contains(ReceivedMessage.Author.Id))
                     {
@@ -187,17 +182,26 @@ public class EventLoggingService
                     }
                     else if (devUserIds.Contains(ReceivedMessage.Author.Id))
                     {
-                        authorName = authorName + "⚙️ [DEV]";
+                        authorName = authorName + " ⚙️ [DEV]";
                     }
                     else
                     {
-                        authorName = authorName + "•" + "(" + authorId + ")";
+                        authorName = authorName + " • " + "(" + authorId + ")";
+                    }
+                    
+                    if (ReceivedGuild.Owner.Id == ReceivedMessage.Author.Id)
+                    {
+                        serverFooter = ReceivedGuild.Name + " (Owner)";
+                    }
+                    else
+                    {
+                        serverFooter = ReceivedGuild.Name;
                     }
                     
                     relayEmbed.WithAuthor($"{authorName}", ReceivedMessage.Author.GetAvatarUrl());
                     relayEmbed.WithTitle($"New Message from {ReceivedGuild.Name}");
                     relayEmbed.WithDescription(ReceivedMessage.Content);
-                    relayEmbed.WithFooter(ReceivedGuild.Name, ReceivedGuild.IconUrl);
+                    relayEmbed.WithFooter(serverFooter, ReceivedGuild.IconUrl);
                     relayEmbed.WithCurrentTimestamp();
 
                     await relayChannel.SendMessageAsync(null, false, relayEmbed.Build());
