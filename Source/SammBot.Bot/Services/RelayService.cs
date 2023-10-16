@@ -91,9 +91,9 @@ public class RelayService
                         }
 
                         relayEmbed.WithAuthor($"{authorName}", ReceivedMessage.Author.GetAvatarUrl());
-                        relayEmbed.WithTitle($"New Message from {ReceivedGuild.Name}");
+                        relayEmbed.WithTitle($"New Message from {receivedGuild.Name}");
                         relayEmbed.WithDescription(ReceivedMessage.Content);
-                        relayEmbed.WithFooter(serverFooter, ReceivedGuild.IconUrl);
+                        relayEmbed.WithFooter(serverFooter, receivedGuild.IconUrl);
                         relayEmbed.WithCurrentTimestamp();
 
                         // Send the relay message
