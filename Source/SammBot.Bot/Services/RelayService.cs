@@ -1,9 +1,11 @@
 ﻿using Discord;
 using Discord.WebSocket;
+using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using Microsoft.Extensions.DependencyInjection;
 using SammBot.Bot.Core;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Channels;
@@ -39,9 +41,13 @@ public class RelayService
 
             // Define an array of moderator user IDs
             ulong[] moderatorUserIds = { 596773775404564481, 503277868168642560, 997397495695024130 };
-
+            
             // Define an array of developer user IDs
             ulong[] devUserIds = { 596773775404564481 };
+
+            // Define an array of admin user IDs
+            ulong[] adminUserIds = { 596773775404564481 };
+
 
             if (relayChannelIds.Contains(ReceivedMessage.Channel.Id))
             {
@@ -58,41 +64,60 @@ public class RelayService
                         EmbedBuilder relayEmbed = new EmbedBuilder();
                         SocketGuildChannel? receivedChannel = ReceivedMessage.Channel as SocketGuildChannel;
                         SocketGuild receivedGuild = receivedChannel!.Guild;
+                        SocketGuildUser? receivedGuildUser = ReceivedMessage.Author as SocketGuildUser;
+                        var invites = await receivedGuild.GetInvitesAsync();
 
                         // Check if the message author is a moderator or developer
                         string authorName = ReceivedMessage.Author.GlobalName;
                         ulong authorId = ReceivedMessage.Author.Id;
-                        string serverFooter;
 
-                        if (moderatorUserIds.Contains(ReceivedMessage.Author.Id) && devUserIds.Contains(ReceivedMessage.Author.Id))
+                        if (adminUserIds.Contains(ReceivedMessage.Author.Id) && moderatorUserIds.Contains(ReceivedMessage.Author.Id) && devUserIds.Contains(ReceivedMessage.Author.Id))
                         {
-                            authorName = authorName + "🛡️ [MOD] ⚙️ [DEV]";
+                            authorName = "[🔧DEV] [🛠️ADMIN] [🔨MOD] " + authorName;
                         }
-                        else if (moderatorUserIds.Contains(ReceivedMessage.Author.Id))
+                        else if (adminUserIds.Contains(ReceivedMessage.Author.Id) && devUserIds.Contains(ReceivedMessage.Author.Id))
                         {
-                            authorName = authorName + " 🛡️ [MOD]";
+                            authorName = "[🔧DEV] [🛠️ADMIN] " + authorName;
+                        }
+                        else if (moderatorUserIds.Contains(ReceivedMessage.Author.Id) && devUserIds.Contains(ReceivedMessage.Author.Id))
+                        {
+                            authorName = "[🔧DEV] [🔨MOD] " + authorName;
                         }
                         else if (devUserIds.Contains(ReceivedMessage.Author.Id))
                         {
-                            authorName = authorName + " ⚙️ [DEV]";
+                            authorName = "[🔧DEV] " + authorName;
+                        }
+                        else if (adminUserIds.Contains(ReceivedMessage.Author.Id) && moderatorUserIds.Contains(ReceivedMessage.Author.Id))
+                        {
+                            authorName = "[🛠️ADMIN] [🔨MOD] " + authorName;
+                        }
+                        else if (adminUserIds.Contains(ReceivedMessage.Author.Id))
+                        {
+                            authorName = "[🛠️ADMIN] " + authorName;
+                        }
+                        else if (moderatorUserIds.Contains(ReceivedMessage.Author.Id))
+                        {
+                            authorName = "[🔨MOD] " + authorName;
                         }
                         else
                         {
-                            authorName = authorName + " • " + "(" + authorId + ")";
+                            authorName = authorName + " - " + "[" + authorId + "]";
                         }
 
-                        if (receivedGuild.Owner.Id == ReceivedMessage.Author.Id)
+                        string serverFooter = "";
+                        string firstInvite = "";
+                        // Server Footer
+                        serverFooter = receivedGuild.Name;
+
+                        foreach (var invite in invites)
                         {
-                            serverFooter = receivedGuild.Name + " (Owner)";
-                        }
-                        else
-                        {
-                            serverFooter = receivedGuild.Name;
+                            firstInvite = invite.Code;
                         }
 
                         relayEmbed.WithAuthor($"{authorName}", ReceivedMessage.Author.GetAvatarUrl());
-                        relayEmbed.WithTitle($"New Message from {receivedGuild.Name}");
+                        relayEmbed.WithTitle($"Message from {receivedGuild.Name}");
                         relayEmbed.WithDescription(ReceivedMessage.Content);
+                        relayEmbed.AddField("Invite", "[Click to Join]" + "(" + "https://discord.gg/" + firstInvite + ")");
                         relayEmbed.WithFooter(serverFooter, receivedGuild.IconUrl);
                         relayEmbed.WithCurrentTimestamp();
 
